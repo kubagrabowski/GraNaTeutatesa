@@ -1,10 +1,12 @@
 package com.example.granateutatesa
 
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.util.Log
 
-class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val color: Int) {
+class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val context:Context) {
 
     var gems:ArrayList<Gem> = ArrayList()
 
@@ -30,29 +32,34 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
                 xGem = GamePanel.SCREEN_WIDTH-gemwidth
             }
             //gems.add(GemDobry(xGem,y_niebotworzenia,gemwidth,gemheight,color))
-            gems.add(losujGem(xGem,y_niebotworzenia,gemwidth,gemheight,color))
+            gems.add(losujGem(xGem,y_niebotworzenia,gemwidth,gemheight))
             y_niebotworzenia+=gapBetween+gemheight
         }
     }
 
-    fun losujGem(startx:Int ,starty:Int ,width:Int, height:Int, color:Int):Gem{
+    fun losujGem(startx:Int ,starty:Int ,width:Int, height:Int):Gem{
         val los = (Math.random() * 100).toInt()
         Log.d("LOS", los.toString())
         when(los){
-            in 0..10 ->{
-                return GemSpeedUp(startx,starty,width,height,color)
+            in 0..5 ->{
+                val emerald = BitmapFactory.decodeResource(context.resources, R.drawable.emerald)
+                return GemSpeedUp(startx,starty,width,height, emerald)
             }
-            in 11..49 ->{
-                return GemDobry(startx,starty,width,height,color)
+            in 6..49 ->{
+                val sapphire = BitmapFactory.decodeResource(context.resources, R.drawable.sapphire)
+                return GemDobry(startx,starty,width,height, sapphire)
             }
             50 -> {
-                return GemZycie(startx,starty,width,height,color)
+                val diamond = BitmapFactory.decodeResource(context.resources, R.drawable.diamond)
+                return GemZycie(startx,starty,width,height, diamond)
             }
-            in 51..90 ->{
-                return GemZly(startx,starty,width,height,color)
+            in 51..95 ->{
+                val ruby = BitmapFactory.decodeResource(context.resources, R.drawable.ruby)
+                return GemZly(startx,starty,width,height, ruby)
             }
             else -> {
-                return GemSpeedDown(startx,starty,width,height,color)
+                val emerald = BitmapFactory.decodeResource(context.resources, R.drawable.emerald)
+                return GemSpeedDown(startx,starty,width,height, emerald)
             }
 
         }
@@ -78,7 +85,7 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
             xGem = GamePanel.SCREEN_WIDTH-gemwidth
         }
         //gems.add(0,GemDobry(xGem,gems[0].getGemZarys().top-gapBetween-gemheight,gemwidth,gemheight,color))
-        gems.add(0,losujGem(xGem,gems[0].getGemZarys().top-gapBetween-gemheight,gemwidth,gemheight,color))
+        gems.add(0,losujGem(xGem,gems[0].getGemZarys().top-gapBetween-gemheight,gemwidth,gemheight))
 
     }
 

@@ -1,11 +1,8 @@
 package com.example.granateutatesa
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 
-class GemZly(startx:Int ,starty:Int ,width:Int, height:Int, color:Int) : GameObject,Gem {
+class GemZly(startx:Int ,starty:Int ,width:Int, height:Int, private val bitmap:Bitmap) : GameObject,Gem {
 
     private val GemValue = 2
     private val mojareprezentacja: Rect = Rect(startx, starty, startx+width, starty+height)
@@ -25,9 +22,7 @@ class GemZly(startx:Int ,starty:Int ,width:Int, height:Int, color:Int) : GameObj
     }
 
     override fun draw(canvas: Canvas) {
-        val paint: Paint = Paint()
-        paint.color = Color.BLACK
-        canvas.drawRect(mojareprezentacja, paint)
+        canvas.drawBitmap(bitmap,null, mojareprezentacja,Paint())
     }
 
     override fun update() {

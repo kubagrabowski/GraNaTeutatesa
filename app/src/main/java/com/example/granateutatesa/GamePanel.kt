@@ -11,8 +11,8 @@ import java.lang.Exception
 class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceView(cont), SurfaceHolder.Callback {
 
     companion object {
-        @JvmStatic var SCREEN_WIDTH = 0
-        @JvmStatic var SCREEN_HEIGHT = 0
+        var SCREEN_WIDTH = 0
+        var SCREEN_HEIGHT = 0
         var INIT_MOMENT = 0L
     }
 
@@ -20,11 +20,11 @@ class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceVi
     var mythread : MainThread? = null
     var player : Player? = null
     var player_point : Point? = null
-    var gemMenager = GemMenager(100,50,50,Color.RED)
+    var gemMenager = GemMenager(100,75,75, cont)
     var lives = 10
     var points = 0
     val pointsTarget = points
-    var movingplayer = false
+    //var movingplayer = false
 
     init{
         holder.addCallback(this)
@@ -59,7 +59,7 @@ class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceVi
         }
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+    /*override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         when(event!!.actionMasked){
             MotionEvent.ACTION_DOWN -> {
@@ -77,8 +77,8 @@ class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceVi
         }
 
         return true
-        //return super.onTouchEvent(event)
-    }
+
+    }*/
 
     fun update(){
         if(lives>0) {

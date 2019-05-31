@@ -1,11 +1,8 @@
 package com.example.granateutatesa
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 
-class GemZycie(startx:Int ,starty:Int ,width:Int, height:Int, color:Int) : GameObject,Gem {
+class GemZycie(startx:Int ,starty:Int ,width:Int, height:Int, private val bitmap: Bitmap) : GameObject,Gem {
 
     private val GemValue = 5
     private val mojareprezentacja: Rect = Rect(startx, starty, startx+width, starty+height)
@@ -27,7 +24,7 @@ class GemZycie(startx:Int ,starty:Int ,width:Int, height:Int, color:Int) : GameO
     }
 
     override fun draw(canvas: Canvas) {
-        val paint: Paint = Paint()
+       /* val paint: Paint = Paint()
         if(System.currentTimeMillis()-lastChange>=blinkFreq) {
             if(System.currentTimeMillis()-lastChange>=2*blinkFreq)
                 lastChange = System.currentTimeMillis()
@@ -37,7 +34,9 @@ class GemZycie(startx:Int ,starty:Int ,width:Int, height:Int, color:Int) : GameO
             paint.color = Color.CYAN
         }
 
-        canvas.drawRect(mojareprezentacja, paint)
+        canvas.drawRect(mojareprezentacja, paint)*/
+
+        canvas.drawBitmap(bitmap,null, mojareprezentacja,Paint())
     }
 
     override fun update() {

@@ -10,18 +10,18 @@ import android.util.Log
 
 class Player(val jakwadrat:Rect, var color:Int, val context:Context):GameObject,SensorEventListener {
 
-    val otoczka = Rect(jakwadrat)
+    private val otoczka = Rect(jakwadrat)
 
     private val manager = (context.getSystemService(Context.SENSOR_SERVICE)) as(SensorManager)
     private val sensor = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
     private var rotation = 0.0f
-    private val speedwhenRot = 10.0f
+    private val speedwhenRot = 12.0f
 
     init {
         register()
     }
 
-    fun register(){
+    private fun register(){
         manager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_GAME)
     }
 
@@ -32,6 +32,7 @@ class Player(val jakwadrat:Rect, var color:Int, val context:Context):GameObject,
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
 
     }
+
 
     override fun onSensorChanged(event: SensorEvent?) {
         if(event!!.sensor.type == Sensor.TYPE_ACCELEROMETER){
@@ -48,16 +49,20 @@ class Player(val jakwadrat:Rect, var color:Int, val context:Context):GameObject,
 
 
     override fun draw(canvas: Canvas) {
-        var paint:Paint = Paint()
+        /*val paint = Paint()
         paint.color = Color.BLACK
         canvas.drawRect(otoczka, paint)
         paint.color = color
-        canvas.drawRect(jakwadrat, paint)
+        canvas.drawRect(jakwadrat, paint)*/
+
+        val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.chest)
+
+        canvas.drawBitmap(bitmap,null, otoczka,Paint())
 
     }
 
     override fun update() {
-        if(-1.0f < rotation && rotation < 1.0f ){
+        if(-0.7f < rotation && rotation < 0.7f ){
             rotation=0.0f
         }
         Log.d("ROT", (speedwhenRot/rotation).toString())

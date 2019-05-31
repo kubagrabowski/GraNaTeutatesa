@@ -1,11 +1,8 @@
 package com.example.granateutatesa
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 
-class GemSpeedUp(startx:Int ,starty:Int ,width:Int, height:Int, color:Int) : GameObject,Gem {
+class GemSpeedUp(startx:Int ,starty:Int ,width:Int, height:Int, private val bitmap: Bitmap) : GameObject,Gem {
 
     private val GemValue = 3
     private val mojareprezentacja: Rect = Rect(startx, starty, startx+width, starty+height)
@@ -25,9 +22,7 @@ class GemSpeedUp(startx:Int ,starty:Int ,width:Int, height:Int, color:Int) : Gam
     }
 
     override fun draw(canvas: Canvas) {
-        val paint: Paint = Paint()
-        paint.color = Color.GREEN
-        canvas.drawRect(mojareprezentacja, paint)
+        canvas.drawBitmap(bitmap,null, mojareprezentacja,Paint())
     }
 
     override fun update() {
