@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">GraNaTeutatesa</string>
+    <string name="Teutates_main_wygranainfo">Brawo, wygrana !</string>
+    <string name="Teutates_main_przegranainfo">Spróbuj jeszcze raz</string>
+    <string name="Teutates_main_txt_wstep">To jest</string>
+    <string name="Teutates_main_txt_tytul">Gra na Teutatesa</string>
+    <string name="Teutates_main_txt_podstawy">Podstawy</string>
+    <string name="Teutates_main_txt_odpalenie">By uruchomić grę zakryj czujnik światła telefonu</string>
+    <string name="Teutates_main_txt_warunekwygranej">By wygrać zdobądź 128 punktów</string>
+    <string name="Teutates_main_txt_gemdobry">- plus 1 punkt</string>
+    <string name="Teutates_main_txt_gemzly">- minus 1 życie</string>
+    <string name="Teutates_main_txt_gemspeed">- losowa zmiana tempa gry</string>
+    <string name="Teutates_main_txt_gemzycie">- dodatkowe życie i 3 punkty</string>
+    <string name="Teutates_main_txt_sterowanie">Sterujesz przechylając telefon w prawo i lewo</string>
 </resources>

@@ -3,4 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="chilean_fire">#F57C00</color>
+    <color name="tamarillo">#911010</color>
+    <color name="torea_bay">#112392</color>
+
+    <color name="black">#000000</color>
+    <color name="cod_gray">#0C0B0B</color>
 </resources>

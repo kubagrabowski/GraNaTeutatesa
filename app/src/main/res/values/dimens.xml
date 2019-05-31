@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Teutates_main_margin">8dp</dimen>
+
+    <dimen name="Teutates_main_txtsize_intrukcja">18sp</dimen>
+    <dimen name="Teutates_main_txtsize_naglowek">30sp</dimen>
+    <dimen name="Teutates_main_txtsize_tytul">40sp</dimen>
+    <dimen name="Teutates_main_txtsize_warunekweygranej">24sp</dimen>
+</resources>

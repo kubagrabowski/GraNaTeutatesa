@@ -8,7 +8,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
 
-class Player(val jakwadrat:Rect, var color:Int, val context:Context):GameObject,SensorEventListener {
+class Player(private val jakwadrat:Rect, var color:Int, private val context:Context):GameObject,SensorEventListener {
 
     private val otoczka = Rect(jakwadrat)
 
@@ -37,26 +37,16 @@ class Player(val jakwadrat:Rect, var color:Int, val context:Context):GameObject,
     override fun onSensorChanged(event: SensorEvent?) {
         if(event!!.sensor.type == Sensor.TYPE_ACCELEROMETER){
             rotation = event.values[0]
-            val y = event.values[1]
-            val z = event.values[2]
+
             Log.d("SENSORX", rotation.toString())
-            Log.d("SENSORY", y.toString())
-            Log.d("SENSORZ", z.toString())
+
 
         }
     }
 
-
-
     override fun draw(canvas: Canvas) {
-        /*val paint = Paint()
-        paint.color = Color.BLACK
-        canvas.drawRect(otoczka, paint)
-        paint.color = color
-        canvas.drawRect(jakwadrat, paint)*/
 
         val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.chest)
-
         canvas.drawBitmap(bitmap,null, otoczka,Paint())
 
     }

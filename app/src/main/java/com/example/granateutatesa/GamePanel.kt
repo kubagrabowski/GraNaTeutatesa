@@ -3,12 +3,11 @@ package com.example.granateutatesa
 import android.content.Context
 import android.graphics.*
 import android.util.Log
-import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import java.lang.Exception
 
-class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceView(cont), SurfaceHolder.Callback {
+class GamePanel(cont: Context, private val activity:GameActivity, points:Int): SurfaceView(cont), SurfaceHolder.Callback {
 
     companion object {
         var SCREEN_WIDTH = 0
@@ -21,10 +20,10 @@ class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceVi
     var player : Player? = null
     var player_point : Point? = null
     var gemMenager = GemMenager(100,75,75, cont)
-    var lives = 10
+    var lives = 3
     var points = 0
     val pointsTarget = points
-    //var movingplayer = false
+
 
     init{
         holder.addCallback(this)
@@ -59,26 +58,6 @@ class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceVi
         }
     }
 
-    /*override fun onTouchEvent(event: MotionEvent?): Boolean {
-
-        when(event!!.actionMasked){
-            MotionEvent.ACTION_DOWN -> {
-                if(lives > 0 && player!!.getPlayerRect().contains(event.x.toInt(),event.y.toInt())){
-                    movingplayer = true
-                }
-            }
-            MotionEvent.ACTION_MOVE -> {
-                if(lives>0 && movingplayer)
-                player_point!!.set(event.x.toInt(), player_point!!.y)
-            }
-            MotionEvent.ACTION_UP -> {
-                movingplayer = false
-            }
-        }
-
-        return true
-
-    }*/
 
     fun update(){
         if(lives>0) {
@@ -106,7 +85,7 @@ class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceVi
             2 -> lives--
             3 -> gemMenager.speedUp()
             4 -> gemMenager.speedDown()
-            5 -> {lives++; points = points+3}
+            5 -> {lives++; points = points+3; if(lives>3){lives = 3}}
         }
     }
 
@@ -115,7 +94,17 @@ class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceVi
         canvas!!.drawColor(Color.WHITE)
         player!!.draw(canvas)
         gemMenager.draw(canvas)
-        drawText(canvas,lives.toString(), 200f, 0f)
+
+        val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.heart)
+        var i = 0
+        var x =15.0f
+        val y =15.0f
+        while(i<lives){
+            canvas.drawBitmap(bitmap,x,y,Paint())
+            x+=150
+            i++
+        }
+
         drawText(canvas,"Punkty "+points.toString(), SCREEN_WIDTH.toFloat(), 0f)
     }
 
@@ -129,7 +118,7 @@ class GamePanel(cont: Context, val activity:GameActivity, points:Int): SurfaceVi
 
         paint.getTextBounds(tekst,0,tekst.length,r)
 
-        canvas.drawText(tekst,x-r.width()-50f,y + r.height() + 50f,paint)
+        canvas.drawText(tekst,x-r.width()-50f,y + r.height() ,paint)
 
     }
 }

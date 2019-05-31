@@ -1,6 +1,5 @@
 package com.example.granateutatesa
 
-import android.content.Context
 import android.graphics.*
 
 class GemDobry(startx:Int ,starty:Int ,width:Int, height:Int, private val bitmap:Bitmap) : GameObject,Gem {

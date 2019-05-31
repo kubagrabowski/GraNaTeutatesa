@@ -6,8 +6,7 @@ class GemZycie(startx:Int ,starty:Int ,width:Int, height:Int, private val bitmap
 
     private val GemValue = 5
     private val mojareprezentacja: Rect = Rect(startx, starty, startx+width, starty+height)
-    private var lastChange = System.currentTimeMillis()
-    private val blinkFreq = 500L
+
 
     override fun getGemZarys(): Rect {
         return mojareprezentacja
@@ -24,18 +23,6 @@ class GemZycie(startx:Int ,starty:Int ,width:Int, height:Int, private val bitmap
     }
 
     override fun draw(canvas: Canvas) {
-       /* val paint: Paint = Paint()
-        if(System.currentTimeMillis()-lastChange>=blinkFreq) {
-            if(System.currentTimeMillis()-lastChange>=2*blinkFreq)
-                lastChange = System.currentTimeMillis()
-            paint.color = Color.BLUE
-        }
-        else if(System.currentTimeMillis()-lastChange<=blinkFreq){
-            paint.color = Color.CYAN
-        }
-
-        canvas.drawRect(mojareprezentacja, paint)*/
-
         canvas.drawBitmap(bitmap,null, mojareprezentacja,Paint())
     }
 

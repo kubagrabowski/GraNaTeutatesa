@@ -3,7 +3,6 @@ package com.example.granateutatesa
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import android.graphics.Color
 import android.util.Log
 
 class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val context:Context) {
@@ -31,7 +30,6 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
             if (xGem+gemwidth>GamePanel.SCREEN_WIDTH){
                 xGem = GamePanel.SCREEN_WIDTH-gemwidth
             }
-            //gems.add(GemDobry(xGem,y_niebotworzenia,gemwidth,gemheight,color))
             gems.add(losujGem(xGem,y_niebotworzenia,gemwidth,gemheight))
             y_niebotworzenia+=gapBetween+gemheight
         }
@@ -67,10 +65,9 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
     }
 
     fun checkCollected(player:Player):Int{
-        var zwrot = 0
         for(gem:Gem in gems){
             if(gem.colected(player)){
-                zwrot = gem.getGemValue()
+                val zwrot = gem.getGemValue()
                 gems.remove(gem)
                 utrzymajRownowage()
                 return zwrot
@@ -84,7 +81,6 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
         if (xGem+gemwidth>GamePanel.SCREEN_WIDTH){
             xGem = GamePanel.SCREEN_WIDTH-gemwidth
         }
-        //gems.add(0,GemDobry(xGem,gems[0].getGemZarys().top-gapBetween-gemheight,gemwidth,gemheight,color))
         gems.add(0,losujGem(xGem,gems[0].getGemZarys().top-gapBetween-gemheight,gemwidth,gemheight))
 
     }
@@ -130,10 +126,6 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
             gem.spadekpoY(speed*elapsedTime)
         }
         if(gems[gems.size-1].getGemZarys().top>=GamePanel.SCREEN_HEIGHT){
-            /*var xGem = (Math.random()*GamePanel.SCREEN_WIDTH).toInt()
-            if (xGem+gemwidth>GamePanel.SCREEN_WIDTH){
-                xGem = GamePanel.SCREEN_WIDTH-gemwidth
-            }*/
             gems.removeAt(gems.size-1)
             utrzymajRownowage()
         }

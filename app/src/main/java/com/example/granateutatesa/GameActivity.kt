@@ -28,7 +28,6 @@ class GameActivity : Activity() {
 
         actualPanel = GamePanel(this,this, this.intent.getIntExtra("POINTS",1))
         setContentView(actualPanel)
-        //setContentView(GamePanel(this,this, this.intent.getIntExtra("POINTS",1)))
     }
 
     fun end(wygrana:Boolean){

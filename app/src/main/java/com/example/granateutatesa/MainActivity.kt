@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private var manager:SensorManager? = null
     private var light_sensor:Sensor? = null
+    private val doIluPunktow = 128
+    private val progSwiatla = 20
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
 
@@ -24,15 +26,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if(event!!.sensor.type == Sensor.TYPE_LIGHT){
-
             val light = event.values[0]
-
             Log.d("LIGHT_SENSOR", light.toString())
-
-            if(light<20){
+            if(light<progSwiatla){
                 startNewGame()
             }
-
         }
     }
 
@@ -60,22 +58,28 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     fun startNewGame(){
         manager!!.unregisterListener(this)
         val intent = Intent(this, GameActivity::class.java)
-        intent.putExtra("POINTS", 127)
+        intent.putExtra("POINTS", doIluPunktow)
         startActivityForResult(intent, 1)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
         if(requestCode == 1 && resultCode == Activity.RESULT_OK){
             val wygrana = data!!.getBooleanExtra("WYNIK_GRY", false)
             when(wygrana){
-                true -> wynikgry.text = "Brawo, wygrana !"
-                false -> wynikgry.text = "Spróbuj jeszcze raz"
+                true -> {
+                    wynikgry.text = getString(R.string.Teutates_main_wygranainfo)
+                    wygranaimg.visibility= View.VISIBLE
+                    wygranaimg.setImageResource(R.drawable.win_chest)
+
+                }
+                false -> {
+                    wynikgry.text = getString(R.string.Teutates_main_przegranainfo)
+                    wygranaimg.visibility= View.VISIBLE
+                    wygranaimg.setImageResource(R.drawable.lose_chest)
+                }
             }
             manager!!.registerListener(this, light_sensor, SensorManager.SENSOR_DELAY_GAME)
-
         }
-
         super.onActivityResult(requestCode, resultCode, data)
     }
 }

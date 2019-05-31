@@ -7,14 +7,150 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
     <TextView
+            android:textColor="@color/cod_gray"
+            android:text="@string/Teutates_main_txt_gemzly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView10" android:textSize="@dimen/Teutates_main_txtsize_intrukcja"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            android:layout_marginStart="@dimen/Teutates_main_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView3"/>
+    <TextView
+            android:textColor="@color/cod_gray"
+            android:text="@string/Teutates_main_txt_gemspeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView11" android:textSize="@dimen/Teutates_main_txtsize_intrukcja"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            android:layout_marginStart="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toTopOf="@+id/imageView5"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView5"/>
+    <TextView
+            android:textColor="@color/cod_gray"
+            android:text="@string/Teutates_main_txt_gemzycie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView12" android:textSize="@dimen/Teutates_main_txtsize_intrukcja"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            android:layout_marginStart="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"/>
+    <TextView
+            android:textColor="@color/torea_bay"
             android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/Teutates_main_txtsize_naglowek"
             android:textAlignment="center"
             android:id="@+id/wynikgry"
-            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/Teutates_main_margin"
+            android:layout_marginBottom="@dimen/Teutates_main_margin"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"/>
+    <TextView
+            android:textColor="@color/black"
+            android:text="@string/Teutates_main_txt_wstep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" android:layout_marginTop="@dimen/Teutates_main_margin"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginStart="@dimen/Teutates_main_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/Teutates_main_margin"
+            android:textSize="@dimen/Teutates_main_txtsize_naglowek"/>
+    <TextView
+            android:textColor="@color/chilean_fire"
+            android:text="@string/Teutates_main_txt_tytul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" android:layout_marginTop="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/Teutates_main_margin"
+            android:textSize="@dimen/Teutates_main_txtsize_tytul" android:layout_marginBottom="@dimen/Teutates_main_margin"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"/>
+    <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:id="@+id/guideline2"
+                                          android:orientation="horizontal"
+                                          app:layout_constraintGuide_percent="0.2"/>
+    <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:id="@+id/guideline3"
+                                          android:orientation="horizontal"
+                                          app:layout_constraintGuide_percent="0.4"/>
+    <ImageView
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/chest"
+            android:id="@+id/wygranaimg"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/Teutates_main_margin" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin" android:layout_marginBottom="@dimen/Teutates_main_margin"
+            app:layout_constraintBottom_toTopOf="@+id/wynikgry" android:layout_marginTop="@dimen/Teutates_main_margin"/>
+    <TextView
+            android:textColor="@color/black"
+            android:text="@string/Teutates_main_txt_podstawy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5" android:layout_marginTop="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" android:textSize="@dimen/Teutates_main_txtsize_naglowek"
+            android:layout_marginStart="@dimen/Teutates_main_margin"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="@dimen/Teutates_main_margin"
+            app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+            android:textColor="@color/cod_gray"
+            android:text="@string/Teutates_main_txt_odpalenie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="@dimen/Teutates_main_margin"
+            android:layout_marginTop="@dimen/Teutates_main_margin" app:layout_constraintTop_toBottomOf="@+id/textView5"
+            android:textSize="@dimen/Teutates_main_txtsize_intrukcja" android:layout_marginEnd="@dimen/Teutates_main_margin" app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/sapphire"
+            android:id="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toBottomOf="@+id/textView"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ruby"
+            android:id="@+id/imageView3" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin" android:layout_marginTop="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/diamond"
+            android:id="@+id/imageView4" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin" android:layout_marginTop="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/emerald"
+            android:id="@+id/imageView5" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin" android:layout_marginTop="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4"/>
+    <TextView
+            android:textColor="@color/cod_gray"
+            android:text="@string/Teutates_main_txt_gemdobry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7" android:textSize="@dimen/Teutates_main_txtsize_intrukcja"
+            app:layout_constraintStart_toEndOf="@+id/imageView2" android:layout_marginStart="@dimen/Teutates_main_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2"/>
+    <TextView
+            android:textColor="@color/tamarillo"
+            android:text="@string/Teutates_main_txt_warunekwygranej"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView13" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/Teutates_main_margin"
+            android:layout_marginTop="@dimen/Teutates_main_margin" app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            android:layout_marginBottom="@dimen/Teutates_main_margin" app:layout_constraintBottom_toBottomOf="parent" android:textSize="@dimen/Teutates_main_txtsize_warunekweygranej"/>
+    <TextView
+            android:text="@string/Teutates_main_txt_sterowanie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" android:layout_marginTop="@dimen/Teutates_main_margin"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/Teutates_main_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/Teutates_main_margin"
+            android:textColor="@color/cod_gray" android:textSize="@dimen/Teutates_main_txtsize_intrukcja"/>
 </android.support.constraint.ConstraintLayout>

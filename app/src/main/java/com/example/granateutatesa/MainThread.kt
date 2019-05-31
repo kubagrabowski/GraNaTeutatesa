@@ -5,11 +5,11 @@ import android.util.Log
 import android.view.SurfaceHolder
 import java.lang.Exception
 
-class MainThread(val surfHolder:SurfaceHolder, val gamePan:GamePanel):Thread() {
+class MainThread(private val surfHolder:SurfaceHolder, private val gamePan:GamePanel):Thread() {
 
-    val FPS = 30
-    var avg_FPS = 0
-    var isRunning:Boolean = false
+    private val FPS = 30
+    private var avg_FPS = 0
+    private var isRunning:Boolean = false
     var canvas:Canvas? = null
 
     fun setRunnin(running: Boolean){
