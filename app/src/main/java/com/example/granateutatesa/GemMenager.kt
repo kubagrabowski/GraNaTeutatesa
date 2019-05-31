@@ -5,25 +5,25 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.util.Log
 
-class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val context:Context) {
+class GemMenager(private val gapBetween:Int, private val gemheight:Int, private val gemwidth:Int, private val context:Context) {
 
-    var gems:ArrayList<Gem> = ArrayList()
+    private var gems:ArrayList<Gem> = ArrayList()
 
-    var startTimeMilis:Long = System.currentTimeMillis()
-    var travelScreenTime = 5000.0f
+    private var startTimeMilis:Long = System.currentTimeMillis()
+    private var travelScreenTime = 5000.0f
 
-    var isSpeedUp = false
-    var isSpeedDown = false
-    val timeSpeedChange = 5000.0f
-    val SpeedChange = 1500.0f
-    var timeChangedUp = 0L
-    var timeChangedDown = 0L
+    private var isSpeedUp = false
+    private var isSpeedDown = false
+    private val timeSpeedChange = 5000.0f
+    private val speedChange = 1500.0f
+    private var timeChangedUp = 0L
+    private var timeChangedDown = 0L
 
     init{
         tworzGemy()
     }
 
-    fun tworzGemy(){
+    private fun tworzGemy(){
         var y_niebotworzenia = -2*GamePanel.SCREEN_HEIGHT
         while(y_niebotworzenia < 0){
             var xGem = (Math.random()*GamePanel.SCREEN_WIDTH).toInt()
@@ -76,19 +76,18 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
         return 0
     }
 
-    fun utrzymajRownowage(){
+    private fun utrzymajRownowage(){
         var xGem = (Math.random()*GamePanel.SCREEN_WIDTH).toInt()
         if (xGem+gemwidth>GamePanel.SCREEN_WIDTH){
             xGem = GamePanel.SCREEN_WIDTH-gemwidth
         }
         gems.add(0,losujGem(xGem,gems[0].getGemZarys().top-gapBetween-gemheight,gemwidth,gemheight))
-
     }
 
     fun speedUp(){
         if(!isSpeedUp) {
             timeChangedUp = System.currentTimeMillis()
-            travelScreenTime -= SpeedChange
+            travelScreenTime -= speedChange
             isSpeedUp = true
         }
     }
@@ -96,7 +95,7 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
     fun speedDown(){
         if(!isSpeedDown) {
             timeChangedDown = System.currentTimeMillis()
-            travelScreenTime += SpeedChange
+            travelScreenTime += speedChange
             isSpeedDown = true
         }
     }
@@ -105,19 +104,19 @@ class GemMenager(val gapBetween:Int, val gemheight:Int, val gemwidth:Int, val co
         if(startTimeMilis<GamePanel.INIT_MOMENT){
             startTimeMilis = GamePanel.INIT_MOMENT
         }
+
         if(isSpeedUp){
             if(System.currentTimeMillis()-timeChangedUp>timeSpeedChange){
-                travelScreenTime += SpeedChange
+                travelScreenTime += speedChange
                 isSpeedUp = false
             }
         }
         if(isSpeedDown){
             if(System.currentTimeMillis()-timeChangedDown>timeSpeedChange){
-                travelScreenTime -= SpeedChange
+                travelScreenTime -= speedChange
                 isSpeedDown = false
             }
         }
-
 
         val elapsedTime = (System.currentTimeMillis() - startTimeMilis).toInt()
         startTimeMilis = System.currentTimeMillis()

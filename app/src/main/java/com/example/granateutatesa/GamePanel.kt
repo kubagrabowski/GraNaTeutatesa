@@ -16,13 +16,13 @@ class GamePanel(cont: Context, private val activity:GameActivity, points:Int): S
     }
 
 
-    var mythread : MainThread? = null
+    private var mythread : MainThread? = null
     var player : Player? = null
-    var player_point : Point? = null
-    var gemMenager = GemMenager(100,75,75, cont)
-    var lives = 3
-    var points = 0
-    val pointsTarget = points
+    private var player_point : Point? = null
+    private var gemMenager = GemMenager(100,75,75, cont)
+    private var lives = 3
+    private var points = 0
+    private val pointsTarget = points
 
 
     init{
@@ -30,14 +30,11 @@ class GamePanel(cont: Context, private val activity:GameActivity, points:Int): S
         mythread = MainThread(holder, this)
         setFocusable(true)
 
-
-        player = Player(Rect(SCREEN_WIDTH/2-100, SCREEN_HEIGHT-225,SCREEN_WIDTH/2+100, SCREEN_HEIGHT-100), Color.rgb(255,255,0), cont)
+        player = Player(Rect(SCREEN_WIDTH/2-100, SCREEN_HEIGHT-225,SCREEN_WIDTH/2+100, SCREEN_HEIGHT-100), cont)
         player_point = Point(SCREEN_WIDTH/2,SCREEN_HEIGHT-175)
     }
 
-    override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {
-
-    }
+    override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {}
 
     override fun surfaceCreated(holder: SurfaceHolder?) {
         INIT_MOMENT = System.currentTimeMillis()
@@ -61,7 +58,6 @@ class GamePanel(cont: Context, private val activity:GameActivity, points:Int): S
 
     fun update(){
         if(lives>0) {
-            //player!!.update(player_point!!)
             player!!.update()
             gemMenager.update()
             val zwrot = gemMenager.checkCollected(player!!)
@@ -69,17 +65,19 @@ class GamePanel(cont: Context, private val activity:GameActivity, points:Int): S
                 cosZebrane(zwrot)
                 if(lives==0){
                     player!!.stopSensor()
+                    mythread!!.setRunnin(true)
                     activity.end(false)
                 }
                 if(points>= pointsTarget){
                     player!!.stopSensor()
+                    mythread!!.setRunnin(true)
                     activity.end(true)
                 }
             }
         }
     }
 
-    fun cosZebrane(value:Int){
+    private fun cosZebrane(value:Int){
         when(value){
             1 -> points++
             2 -> lives--
@@ -92,6 +90,7 @@ class GamePanel(cont: Context, private val activity:GameActivity, points:Int): S
     override fun draw(canvas: Canvas?) {
         super.draw(canvas)
         canvas!!.drawColor(Color.WHITE)
+
         player!!.draw(canvas)
         gemMenager.draw(canvas)
 
@@ -104,11 +103,10 @@ class GamePanel(cont: Context, private val activity:GameActivity, points:Int): S
             x+=150
             i++
         }
-
         drawText(canvas,"Punkty "+points.toString(), SCREEN_WIDTH.toFloat(), 0f)
     }
 
-    fun drawText(canvas:Canvas, tekst:String, x:Float, y:Float){
+    private fun drawText(canvas:Canvas, tekst:String, x:Float, y:Float){
         val paint = Paint()
         paint.color = Color.BLACK
         paint.textSize = 100.0f
@@ -119,6 +117,5 @@ class GamePanel(cont: Context, private val activity:GameActivity, points:Int): S
         paint.getTextBounds(tekst,0,tekst.length,r)
 
         canvas.drawText(tekst,x-r.width()-50f,y + r.height() ,paint)
-
     }
 }

@@ -8,7 +8,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
 
-class Player(private val jakwadrat:Rect, var color:Int, private val context:Context):GameObject,SensorEventListener {
+class Player(private val jakwadrat:Rect, private val context:Context):GameObject,SensorEventListener {
 
     private val otoczka = Rect(jakwadrat)
 
@@ -29,23 +29,17 @@ class Player(private val jakwadrat:Rect, var color:Int, private val context:Cont
         manager.unregisterListener(this)
     }
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-
-    }
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
 
     override fun onSensorChanged(event: SensorEvent?) {
         if(event!!.sensor.type == Sensor.TYPE_ACCELEROMETER){
             rotation = event.values[0]
-
             Log.d("SENSORX", rotation.toString())
-
-
         }
     }
 
     override fun draw(canvas: Canvas) {
-
         val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.chest)
         canvas.drawBitmap(bitmap,null, otoczka,Paint())
 
@@ -55,25 +49,28 @@ class Player(private val jakwadrat:Rect, var color:Int, private val context:Cont
         if(-0.7f < rotation && rotation < 0.7f ){
             rotation=0.0f
         }
-        Log.d("ROT", (speedwhenRot/rotation).toString())
+        Log.d("ROT", (speedwhenRot*rotation).toString())
         jakwadrat.set(jakwadrat.left-(speedwhenRot*rotation).toInt(),jakwadrat.top, jakwadrat.right-(speedwhenRot*rotation).toInt(), jakwadrat.bottom)
+
         if(jakwadrat.left<10){
             jakwadrat.set(10,jakwadrat.top, jakwadrat.width()+10, jakwadrat.bottom)
         }
         if(jakwadrat.right>GamePanel.SCREEN_WIDTH-10){
             jakwadrat.set(GamePanel.SCREEN_WIDTH-jakwadrat.width()-10,jakwadrat.top, GamePanel.SCREEN_WIDTH-10, jakwadrat.bottom)
         }
+
         otoczka.set(jakwadrat)
         otoczka.set(otoczka.left-10,otoczka.top,otoczka.right+10,otoczka.bottom+10)
     }
 
-    fun update(point:Point){
+    /*fun update(point:Point){
         jakwadrat.set(point.x-jakwadrat.width()/2, point.y - jakwadrat.height()/2, point.x + jakwadrat.width()/2, point.y + jakwadrat.height()/2)
         otoczka.set(jakwadrat)
         otoczka.set(otoczka.left-10,otoczka.top,otoczka.right+10,otoczka.bottom+10)
-    }
+    }*/
 
     fun getPlayerRect():Rect{
+
         return otoczka
     }
 }

@@ -18,11 +18,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private var manager:SensorManager? = null
     private var light_sensor:Sensor? = null
     private val doIluPunktow = 128
-    private val progSwiatla = 20
+    private val progSwiatla = 7
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-
-    }
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
     override fun onSensorChanged(event: SensorEvent?) {
         if(event!!.sensor.type == Sensor.TYPE_LIGHT){
@@ -53,9 +51,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         super.onStop()
     }
 
-
-
-    fun startNewGame(){
+    private fun startNewGame(){
         manager!!.unregisterListener(this)
         val intent = Intent(this, GameActivity::class.java)
         intent.putExtra("POINTS", doIluPunktow)
